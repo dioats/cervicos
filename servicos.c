@@ -30,33 +30,32 @@ typedef struct {
     char data[10];
 } ServiceProvided;
 
-// Dados de exemplo
 Client clients[MAX_CLIENTS] = {
     {"João Silva", "joao@example.com", "1111111111", "SP"},
     {"Maria Souza", "maria@example.com", "2222222222", "RJ"},
     {"Carlos Pereira", "carlos@example.com", "3333333333", "MG"},
-    {"Ana Oliveira", "ana@example.com", "4444444444", "BA"},
+    {"Ana Oliveira", "ana@example.com", "4444444444", "RS"},
     {"Paulo Mendes", "paulo@example.com", "5555555555", "RS"}
 };
 
 int client_count = 5;
 
 ServiceProvider providers[MAX_PROVIDERS] = {
-    {"Lucas Martins", "lucas@example.com", "6666666666", "SP", "Eletricista"},
-    {"Fernanda Costa", "fernanda@example.com", "7777777777", "RJ", "Encanador"},
-    {"Bruno Rocha", "bruno@example.com", "8888888888", "MG", "Pintor"},
-    {"Julia Almeida", "julia@example.com", "9999999999", "BA", "Jardineiro"},
-    {"Marcos Lima", "marcos@example.com", "1010101010", "RS", "Marceneiro"}
+    {"Lucas Martins", "lucas@example.com", "6666666666", "SP", "ELETRICISTA"},
+    {"Fernanda Costa", "fernanda@example.com", "7777777777", "RJ", "ENCANADOR"},
+    {"Bruno Rocha", "bruno@example.com", "8888888888", "MG", "PINTOR"},
+    {"Julia Almeida", "julia@example.com", "9999999999", "BA", "JARDINEIRO"},
+    {"Marcos Lima", "marcos@example.com", "1010101010", "RS", "MARCENEIRO"}
 };
 
 int provider_count = 5;
 
 ServiceProvided services[MAX_SERVICES] = {
-    {"joao@example.com", "lucas@example.com", "Instalação Elétrica", 300.0, "SP", "2024-06-01"},
-    {"maria@example.com", "fernanda@example.com", "Reparo Encanamento", 200.0, "RJ", "2024-06-05"},
-    {"carlos@example.com", "bruno@example.com", "Pintura Residencial", 150.0, "MG", "2024-06-10"},
-    {"ana@example.com", "julia@example.com", "Manutenção de Jardim", 100.0, "BA", "2024-06-15"},
-    {"paulo@example.com", "marcos@example.com", "Reparo de Móveis", 250.0, "RS", "2024-06-20"}
+    {"joao@example.com", "lucas@example.com", "ELETRICISTA", 300.0, "SP", "2024-06-01"},
+    {"maria@example.com", "fernanda@example.com", "ENCANADOR", 200.0, "RJ", "2024-06-05"},
+    {"carlos@example.com", "bruno@example.com", "PINTOR", 150.0, "MG", "2024-06-10"},
+    {"ana@example.com", "julia@example.com", "JARDINEIRO", 100.0, "BA", "2024-06-15"},
+    {"paulo@example.com", "marcos@example.com", "MARCENEIRO", 250.0, "RS", "2024-06-20"}
 };
 
 int service_count = 5;
@@ -142,11 +141,23 @@ void execute_command(char *command) {
 
 int main() {
 
+    printf("\nPossiveis comandos: ");
+    printf("\n\n  list clients");
+    printf("\n  list clients UF=<>");
+    printf("\n  list clients nome:asc");
+    
+    printf("\n\n  list service_providers");
+    printf("\n  list service_providers type=<>");
+    
+    printf("\n\n  list services_provided");
+    printf("\n  list services_provided valor:asc\n");
+    
+
     char command[256];
     while (1) {
         printf("\nDigite um comando (ou 'exit' para sair): ");
         fgets(command, sizeof(command), stdin);
-        command[strcspn(command, "\n")] = 0; // Remove newline character
+        command[strcspn(command, "\n")] = 0;
 
         if (strcmp(command, "exit") == 0) {
             break;
